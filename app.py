@@ -22,7 +22,11 @@ else:
 
 @app.route("/")
 def hello():
-    return jsonify(dict(os.environ))
+    local_env = {
+        'USERS_TABLE': USERS_TABLE,
+        'IS_OFFLINE': IS_OFFLINE
+    }
+    return jsonify(local_env)
 
 
 @app.route("/users/<string:user_id>")
